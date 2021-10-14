@@ -1,29 +1,32 @@
 <template>
   <div id="app">
     <Navbar />
+    <uploader />
     <Previewer />
   </div>
 </template>
 
 <script>
-import Navbar from "./components/Navbar.vue"
-import Previewer from "./components/Previewer.vue"
+import Navbar from "./components/Navbar.vue";
+import Previewer from "./components/Previewer.vue";
+import Uploader from "./components/Uploader.vue";
 export default {
-  name: 'App',
+  name: "App",
   components: {
     Navbar,
-    Previewer
-  }
-}
+    Previewer,
+    Uploader,
+  },
+};
 </script>
 
 <style>
-:root{
+:root {
   --primary: #555;
   --secondary: #333;
   --text: #777;
 }
-*{
+* {
   margin: 0;
   padding: 0;
 }

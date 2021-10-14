@@ -1,20 +1,24 @@
 <template>
   <div>
-    Preview
-    <p>{{processedText}}</p>
+    <div v-if="processedData">
+      <h3>
+        Most common Word: {{ processedData.mostCommonWord }} Occurerences:
+      </h3>
+      <p>
+        {{ processedData.content }}
+      </p>
+    </div>
   </div>
 </template>
 
 <script>
-  export default { 
-    computed:{
-      processedText() {
-        return this.$store.state.text
-      }
-    }
-  }
+export default {
+  computed: {
+    processedData() {
+      return this.$store.state.processedFile;
+    },
+  },
+};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>
