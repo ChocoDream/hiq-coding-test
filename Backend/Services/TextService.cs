@@ -1,6 +1,9 @@
 using Backend.Models;
 using System.Collections.Generic;
 using System.Linq;
+using System.IO;
+using System.Text;
+using Microsoft.AspNetCore.Http;
 
 namespace Backend.Services
 {
@@ -16,6 +19,19 @@ namespace Backend.Services
     public static void Post(Text newText)
     {
       text = newText;
+    }
+
+    public static void processFile(IFormFile file)
+    {
+
+    }
+
+    private static string ReadFromFile(IFormFile file)
+    {
+      Stream stream = file.OpenReadStream();
+      StreamReader reader = new StreamReader(stream);
+      string content = reader.ReadToEnd();
+      return content;
     }
   }
 }
