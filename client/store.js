@@ -23,7 +23,7 @@ const store = new Vuex.Store({
   },
   actions: {
     async uploadFile({ commit }, payload) {
-      commit("setStatus", "RECIEVING");
+      commit("setStatus", "PENDING");
       const options = {
         method: "POST",
         body: payload.value,
@@ -31,10 +31,13 @@ const store = new Vuex.Store({
       await fetch("http://localhost:5000/upload-file", options)
         .then((response) => {
           if (response.ok) {
-            commit("setStatus", "PENDING");
+            commit("setStatus", "RECIEVING");
           } else {
-            return commit("setStatus", "REJECTED");
+            throw commit("setStatus", "REJECTED");
           }
+        })
+        .then((result) => {
+          console.log(result.json());
         })
         .catch((error) => {
           console.warn(error);

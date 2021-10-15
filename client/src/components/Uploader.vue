@@ -25,12 +25,9 @@ export default {
   methods: {
     onFileUpload(event) {
       const files = event.target.files;
-      const fileReader = new FileReader();
-      fileReader.addEventListener("load", () => {
-        this.imgUrl = fileReader.result;
-      });
-      fileReader.readAsDataURL(files[0]);
-      this.$store.dispatch("uploadFile", { value: files[0] });
+      const formData = new FormData();
+      formData.append("file", files[0]);
+      this.$store.dispatch("uploadFile", { value: formData });
     },
   },
 };
