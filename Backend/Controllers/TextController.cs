@@ -21,8 +21,8 @@ namespace Backend.Controllers
 
     public IActionResult UploadFile(IFormFile file)
     {
-      TextService.processFile(file);
-      return CreatedAtAction(nameof(UploadFile), new { value = "success" });
+      Text newFile = TextService.processFile(file);
+      return CreatedAtAction(nameof(UploadFile), newFile);
     }
   }
 }
