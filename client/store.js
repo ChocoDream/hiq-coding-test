@@ -5,16 +5,12 @@ Vue.use(Vuex);
 
 const store = new Vuex.Store({
   state: {
-    processedFile: {
-      content: "lorem lipsum lipsum",
-      mostCommonWord: "lipsum",
-      occurences: 2,
-    },
+    processedFile: {},
     file: null,
     fileStatus: "EMPTY",
   },
   mutations: {
-    setFile(state, payload) {
+    setProcessedFile(state, payload) {
       state.processedFile = payload.value;
     },
     setStatus(state, status) {
@@ -40,6 +36,20 @@ const store = new Vuex.Store({
         .catch((error) => {
           console.warn(error);
           commit("setStatus", "ERROR");
+        });
+    },
+    async getFileFromServer({ commit }) {
+      //let result;
+      const options = {
+        method: "GET",
+      };
+      await fetch("http://localhost:5000/text", options)
+        .then((response) => {
+          return response.json();
+        })
+        .then((data) => {
+          console.log(data)
+          commit("setProcessedFile", {value: data})
         });
     },
   },
