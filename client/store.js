@@ -28,16 +28,14 @@ const store = new Vuex.Store({
         method: "POST",
         body: payload.value,
       };
-      await fetch("http://localhost:5000/upload-file", options)
+      await fetch("http://localhost:5000/text", options)
         .then((response) => {
           if (response.ok) {
             commit("setStatus", "RECIEVING");
-          } else {
-            throw commit("setStatus", "REJECTED");
           }
         })
         .then((result) => {
-          console.log(result.json());
+          console.log(result);
         })
         .catch((error) => {
           console.warn(error);
