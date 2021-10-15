@@ -26,12 +26,11 @@ const store = new Vuex.Store({
       };
       await fetch("http://localhost:5000/text", options)
         .then((response) => {
-          if (response.ok) {
-            commit("setStatus", "RECIEVING");
-          }
+          return response.json();
         })
         .then((result) => {
-          console.log(result);
+          commit("setProcessedFile", { value: result });
+          commit("setStatus", "SUCCESS");
         })
         .catch((error) => {
           console.warn(error);
@@ -48,8 +47,8 @@ const store = new Vuex.Store({
           return response.json();
         })
         .then((data) => {
-          console.log(data)
-          commit("setProcessedFile", {value: data})
+          console.log(data);
+          commit("setProcessedFile", { value: data });
         });
     },
   },
