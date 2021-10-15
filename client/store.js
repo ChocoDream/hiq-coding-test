@@ -47,7 +47,6 @@ const store = new Vuex.Store({
           return response.json();
         })
         .then((data) => {
-          console.log(data);
           commit("setProcessedFile", { value: data });
         });
     },
