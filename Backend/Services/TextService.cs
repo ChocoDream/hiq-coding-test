@@ -32,7 +32,7 @@ namespace Backend.Services
       int highestCount = getHighestOccurrence(wordWithCountDict);
       List<string> mostCommonWords = getMostCommonWordFromDict(wordWithCountDict, highestCount);
       string mostCommonWordsString = string.Join(", ", mostCommonWords.ToArray());
-      string processedContent = populateTextWithFooBar(cleanedContent, mostCommonWords);
+      string processedContent = populateTextWithFooBar(content, mostCommonWords);
       return new Text { content = processedContent, mostCommonWord = mostCommonWordsString, occurrences = highestCount };
     }
 
